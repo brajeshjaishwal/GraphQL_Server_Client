@@ -12,7 +12,7 @@ const PostSchema = new Schema({
 
 PostSchema.methods.userUpvoted = async function (id) {
     var post = this
-    var user = await post.likedBy.find(u => u === id)
+    var user = await post.likedBy.filter(u => u === id)
     console.log(`in userUpvoted ${post.likedBy} ${user}`)
     return user !== undefined
 }
