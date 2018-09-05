@@ -10,6 +10,13 @@ const PostSchema = new Schema({
     likedBy: [Schema.Types.ObjectId]
 })
 
+PostSchema.methods.userUpvoted = async function (id) {
+    var post = this
+    var user = await post.likedBy.find(u => u === id)
+    console.log(`in userUpvoted ${post.likedBy} ${user}`)
+    return user !== undefined
+}
+
 var Post = mongoose.model('Post', PostSchema)
 
 module.exports = Post

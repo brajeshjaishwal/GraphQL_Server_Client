@@ -40,17 +40,23 @@ const PostType = new GraphQLObjectType({
         id: {type: GraphQLID},
         title: {type: GraphQLString},
         content: { type: GraphQLString},
-        likes: { type: new GraphQLList(GraphQLInt)},
+        likes: { type: GraphQLInt},
         author: { 
             type: UserType,
-            resolve: (_, {}, context, info) => {
+            resolve: async function (_, {}, context, info) {
                 return User.findById(_.author)
             }
         },
         comments: {
             type: new GraphQLList(CommentType),
-            resolve: (_, {}, context, info) => {
+            resolve: async function (_, {}, context, info) {
                 return Comment.find({_id: _.comments})
+            }
+        },
+        likedBy: {
+            type: new GraphQLList(UserType),
+            resolve: async function (_, {}, context, info) {
+                return User.find({_id: _.likedBy})
             }
         }
     }

@@ -72,11 +72,12 @@ const rootMutation = new GraphQLObjectType({
                 content: { type: GraphQLString }
             },
             resolve: async function (_, {}, context, info) {
-                var post = new Post({
+                var post = Post({
                     title,
                     content,
                     author: context.user._id
                 })
+                post.save()
             }
         },
         LikePost: {
@@ -87,22 +88,25 @@ const rootMutation = new GraphQLObjectType({
             },
             resolve: async function (_, {id, like}, context, info) {
                 try{
-                    console.log(context.user)
                     //first find post
-                    var post = Post.findById(id)
+                    var post = await Post.findById(id)
                     //dont allow operation on own post
                     if(post) {
                         if(post.author === context.user._id)
-                            throw new Error("Hey! you are trying to be self obsessive.")
+                            throw Error("Hey! you are self obsessive.")
                         else {
                             //check whether user have already voted on this
-                            var likes = post.likes
-                            console.log(post.likedBy)
-                            //post.save()
-                            Post.findByIdAndUpdate(id, { $set: { likes: likes + 1 }})
+                            var alreadyVoted = await post.userUpvoted(context.user._id)
+                            if(alreadyVoted) {
+                                throw Error("Hey! you have already voted on this.")
+                            }
+                            post.likes = post.likes + 1
+                            post.likedBy.push(context.user._id)
+                            await post.save()
+                            return post
                         }
                     }
-                    throw new Error("Hey! post does not exist any more, owner might have deleted it.")
+                    throw Error("Hey! post does not exist any more, owner might have deleted it.")
                 }catch(error) {
                     throw error
                 }
