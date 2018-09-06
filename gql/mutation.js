@@ -93,7 +93,7 @@ const rootMutation = new GraphQLObjectType({
                     //dont allow operation on own post
                     if(post) {
                         if(post.author === context.user._id)
-                            throw Error("Hey! you are self obsessive.")
+                            throw Error("Hey! you cannot vote yourself.")
                         else {
                             //check whether user have already voted on this
                             var alreadyVoted = await post.userUpvoted(context.user._id)
