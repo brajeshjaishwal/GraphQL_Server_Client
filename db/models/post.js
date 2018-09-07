@@ -7,13 +7,23 @@ const PostSchema = new Schema({
     author: Schema.Types.ObjectId,
     comments: [Schema.Types.ObjectId],
     likes: Number,
-    vote: [Schema.Types.ObjectId]
+    voters: [Schema.Types.ObjectId]
 })
 
-PostSchema.methods.doVote = async function (userId) {
+PostSchema.methods.doVote = async function (userId, like) {
     var post = this
-    var vote = await post.vote.filter(v => v.userId === userId)
-    
+    var Votes = mongoose.model('Vote')
+    var result = await Votes.doVote({ userId, postId: post._id, like} )
+    if(!result.alreadyVoted){
+        post.vote.push(userId)
+        await post.save()
+    }
+    else{
+        if(result.message !== undefined){
+            return result.message
+        }
+        return result.vote
+    }
 }
 
 var Post = mongoose.model('Post', PostSchema)

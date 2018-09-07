@@ -9,7 +9,7 @@ const VoteSchema = new Schema({
     downVoted: Boolean,
 })
 
-VoteSchema.statics.doVote = async function (userId, postId, like) {
+VoteSchema.statics.doVote = async function ({userId, postId, like}) {
     var tempVote = like ? 1 : -1;
     var voteModel = mongoose.model('Vote')
     var UserModel = mongoose.model('User')
@@ -39,7 +39,7 @@ VoteSchema.statics.doVote = async function (userId, postId, like) {
         vote.vote = tempVote
         vote.upVoted = vote.downVoted = like
         vote.save()
-        return { alreadyVoted: false, vote }
+        return { alreadyVoted: true, vote }
     }
 }
 
