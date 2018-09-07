@@ -7,14 +7,13 @@ const PostSchema = new Schema({
     author: Schema.Types.ObjectId,
     comments: [Schema.Types.ObjectId],
     likes: Number,
-    likedBy: [Schema.Types.ObjectId]
+    vote: [Schema.Types.ObjectId]
 })
 
-PostSchema.methods.userUpvoted = async function (id) {
+PostSchema.methods.doVote = async function (userId) {
     var post = this
-    var user = await post.likedBy.filter(u => u === id)
-    console.log(`in userUpvoted ${post.likedBy} ${user}`)
-    return user !== undefined
+    var vote = await post.vote.filter(v => v.userId === userId)
+    
 }
 
 var Post = mongoose.model('Post', PostSchema)
