@@ -56,7 +56,7 @@ const PostType = new GraphQLObjectType({
         likedBy: {
             type: new GraphQLList(UserType),
             resolve: async function (_, {}, context, info) {
-                return User.find({_id: _.likedBy})
+                return User.find({_id: _.voters})
             }
         }
     }

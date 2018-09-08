@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const Votes = require('./vote')
 
 const PostSchema = new Schema({
     title: String,
@@ -12,15 +13,14 @@ const PostSchema = new Schema({
 
 PostSchema.methods.doVote = async function (userId, like) {
     var post = this
-    var Votes = mongoose.model('Vote')
+    //var Votes = mongoose.model('Vote')
     var result = await Votes.doVote({ userId, postId: post._id, like} )
     if(!result.alreadyVoted){
-        post.vote.push(userId)
+        post.voters.push(userId)
+    }else if(result.message !== undefined){
+        throw result.message
     }
-    else if(result.message !== undefined){
-            return result.message
-    }
-    post.likes += result.vote
+    post.likes += result.vote.vote
     await post.save()
     return post
 }

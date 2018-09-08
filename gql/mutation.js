@@ -96,14 +96,8 @@ const rootMutation = new GraphQLObjectType({
                             throw Error("Hey! you cannot vote yourself.")
                         else {
                             //check whether user have already voted on this
-                            var alreadyVoted = await post.userUpvoted(context.user._id)
-                            if(alreadyVoted) {
-                                throw Error("Hey! you have already voted on this.")
-                            }
-                            post.likes = post.likes + 1
-                            post.likedBy.push(context.user._id)
-                            await post.save()
-                            return post
+                            var post = await post.doVote(context.user._id, like)                            
+                                return post
                         }
                     }
                     throw Error("Hey! post does not exist any more, owner might have deleted it.")
