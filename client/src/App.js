@@ -9,13 +9,15 @@ import PostHome from './components/PostHome';
 import Welcome from './components/Welcome';
 import Logout from './components/Logout';
 import AppHeader from './components/Header';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo'
 
 class App extends Component {
   render() {
     return (
+      <ApolloProvider client={new ApolloClient({uri: "http://localhost:3300/gql"})}>
           <BrowserRouter>
             <Container>
-              <div></div>
               <Header as='h3' color='red'>
                 <Icon color='purple' name='users' />
                 <Header.Content >Reader & Writer</Header.Content>
@@ -30,6 +32,7 @@ class App extends Component {
               </Switch>
             </Container>
           </BrowserRouter>
+      </ApolloProvider>
     );
   }
 }

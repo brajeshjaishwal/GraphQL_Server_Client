@@ -1,16 +1,19 @@
-import gql from 'graphql'
+import gql from "graphql-tag";
 
-const allposts = gql `
+const getAllPostsQuery = gql`
     query {
         Posts {
             id
             title
             content
+            likes
             author {
-            id
-            name
-            email
+                id
+                name
+                email
             }
+        }
     }
-}
 `
+
+export default getAllPostsQuery
