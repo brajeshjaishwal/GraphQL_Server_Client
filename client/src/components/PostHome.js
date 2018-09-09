@@ -5,23 +5,12 @@ import getAllPostsQuery from '../GQL/query';
 import { Loader, Dimmer, Segment } from 'semantic-ui-react';
 import PostComponent from './Post';
 
-const PostHome1 = () => (
-    <Query query = { getAllPostsQuery } >
-        {({ loading, error, data, networkStatus }) => {
-            if (loading) return <div>Loading ...</div>
-            if (error) return <div>`Error!: ${error} ${networkStatus}`</div>
-            return <div>`data!: ${data.Posts}`</div>
-            }}
-        </Query>
-    )
-//export default PostHome1
-
 class PostHome extends React.Component {
     render() {
         return (
             <Query query={ getAllPostsQuery }> 
                 {({loading, error, data, networkStatus }) => {
-                        if(loading) return <div>Loading</div>
+                        if(loading) return <Loader active inline='centered' />
                         if(error) return <div>`Error!: ${error} ${networkStatus}`</div>
                         console.log(data)
                         return (
