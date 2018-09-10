@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon, Grid, Segment, Image } from 'semantic-ui-react'
+import { Rating, Card, Icon, Grid, Segment, Image } from 'semantic-ui-react'
 
 const PostComponent = ({post}) => {
     return (
@@ -28,6 +28,9 @@ const PostComponent = ({post}) => {
                     <Grid.Row columns='equal'>
                         <Grid.Column >
                             <div>likes: {post.likes}</div>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Rating rating={1} maxRating={5} />
                         </Grid.Column>
                         <Grid.Column floated='right' width={1}>
                             <Icon name="thumbs up" color='purple' />

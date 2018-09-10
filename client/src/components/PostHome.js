@@ -5,7 +5,7 @@ import getAllPostsQuery from '../GQL/query';
 import { Loader, Dimmer, Segment } from 'semantic-ui-react';
 import PostComponent from './Post';
 
-class PostHome extends React.Component {
+export default class PostHome extends React.Component {
     render() {
         return (
             <Query query={ getAllPostsQuery }> 
@@ -25,5 +25,3 @@ class PostHome extends React.Component {
         )
     }
 }
-
-export default PostHome

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Header, Form, Icon, Segment, Button, Message } from 'semantic-ui-react';
+import { Grid, Form, Segment, Message } from 'semantic-ui-react';
 import { Mutation } from 'react-apollo';
 import loginMutation from '../GQL/mutation'
 

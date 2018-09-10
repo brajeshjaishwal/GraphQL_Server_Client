@@ -3,7 +3,7 @@ import { Grid, Header, Form, Icon, Segment, Button, Message } from 'semantic-ui-
 import { Mutation } from 'react-apollo';
 import signUpMutation from '../GQL/mutation'
 
-export default class Login extends React.Component {
+export default class Register extends React.Component {
 
     state = {
         name:"",
