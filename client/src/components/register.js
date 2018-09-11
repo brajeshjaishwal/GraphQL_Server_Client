@@ -33,12 +33,12 @@ export default class Register extends React.Component {
                     <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
                         <Grid.Column style={{ maxWidth: 450 }}>
                             <Form size='large' onSubmit={(event => this.handleSubmit({event, Register}))}>
-                                <Segment stacked>
+                                <Segment >
                                     <Form.Input fluid icon='user' name='name' value={name} iconPosition='left' placeholder='Full Name' onChange={this.handleChange}/>
-                                    <Form.Input fluid icon='envelope' name='email' value={email} iconPosition='left' placeholder='E-mail address' onChange={this.handleChange}/>
+                                    <Form.Input fluid icon='name' name='email' value={email} iconPosition='left' placeholder='E-mail address' onChange={this.handleChange}/>
                                     <Form.Input fluid icon='lock' name='password' value={password} iconPosition='left' placeholder='Password' type='password' onChange={this.handleChange}/>
                                     <Form.Input fluid icon='lock' name='confirmPassword' value={confirmPassword} iconPosition='left' placeholder='Confirm Password' type='password' onChange={this.handleChange}/>
-                                    <Form.Button color='purple' fluid size='large' content='Submit'>
+                                    <Form.Button fluid size='large' content='Submit'>
                                         Register
                                     </Form.Button>
                                 </Segment>

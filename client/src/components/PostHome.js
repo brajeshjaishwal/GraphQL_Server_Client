@@ -12,13 +12,7 @@ export default class PostHome extends React.Component {
                 {({loading, error, data, networkStatus }) => {
                         if(loading) return <Loader active inline='centered' />
                         if(error) return <div>`Error!: ${error} ${networkStatus}`</div>
-                        console.log(data)
-                        return (
-                            data.Posts.map(p => (
-                            <ul>
-                                <PostComponent post= {p} />
-                            </ul>))
-                        )
+                        return <ul>{data.Posts.map(p => <PostComponent post= {p} />)}</ul>
                     }
                 }
             </Query>

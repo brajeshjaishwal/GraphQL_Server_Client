@@ -12,30 +12,25 @@ import Post from './components/Post'
 import PostHome from './components/PostHome'
 import AppHeader from './components/Header'
 import Register from './components/register'
+import Profile from './components/Profile';
 
 class App extends Component {
   render() {
     return (
       <ApolloProvider client={new ApolloClient({uri: "http://localhost:3300/gql"})}>
           <BrowserRouter>
-            <Container >
-              <Header as='h3' color='red' style={{ marginTop: '1em'} }>
-                <Icon color='purple' name='users' />
-                <Header.Content>
-                  <Label color='orange'>
-                    <b>Concept</b>
-                    <Label.Detail>Share</Label.Detail>
-                  </Label>
-                </Header.Content>
-              </Header>
+            <Container >              
               <AppHeader />
-              <Switch>
-                <Route exact path="/" component = { Welcome } />
-                <Route exact path="/Concepts" component= { PostHome } />
-                <Route exact path="/Login" component={Login}></Route>
-                <Route exact path="/Register" component={Register}></Route>
-                <Route exact path="/Logout" component={Logout} />
-              </Switch>
+              <Container style={{marginTop: '5em'}}>
+                <Switch>
+                  <Route exact path="/" component = { Welcome } />
+                  <Route path="/Login" component={Login} />
+                  <Route path="/Register" component={Register} />
+                  <Route path="/Profile" component={Profile} />
+                  <Route path="/Logout" component={Logout} />
+                  <Route path="/Concepts" component={PostHome} />
+                </Switch>
+              </Container>
             </Container>
           </BrowserRouter>
       </ApolloProvider>
