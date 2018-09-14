@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { Grid, Header, Form, Icon, Segment, Button, Message } from 'semantic-ui-react';
 import { Mutation } from 'react-apollo';
 import signUpMutation from '../GQL/mutation'
@@ -43,9 +44,7 @@ export default class Register extends React.Component {
                                     </Form.Button>
                                 </Segment>
                             </Form>
-                            <Message>
-                                Already a member? <a href='/Login'>Login</a>
-                            </Message>
+                            <Message>Already a member? <NavLink exact to = '/Login'>Register</NavLink></Message>
                         </Grid.Column>
                     </Grid> )}}
             </Mutation>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { Grid, Form, Segment, Message } from 'semantic-ui-react';
 import { Mutation } from 'react-apollo';
 import loginMutation from '../GQL/mutation'
@@ -38,9 +39,7 @@ export default class Login extends React.Component {
                                     </Form.Button>
                                 </Segment>
                             </Form>
-                            <Message>
-                                New to us? <a href='/Register'>Register</a>
-                            </Message>
+                            <Message>New to us? <NavLink exact to = '/Register'>Register</NavLink></Message>
                         </Grid.Column>
                     </Grid> )}}
             </Mutation>

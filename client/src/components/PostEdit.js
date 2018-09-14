@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Rating, Card, Icon, Grid, Segment, Image } from 'semantic-ui-react'
 
-const PostComponent = ({post}) => {
+const PostEditComponent = ({post}) => {
     return (
         <Card fluid>
             <Card.Content>
