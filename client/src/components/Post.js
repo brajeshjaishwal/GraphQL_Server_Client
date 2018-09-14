@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Rating, Card, Icon, Grid, Segment, Image } from 'semantic-ui-react'
+import { Card, Icon, Grid } from 'semantic-ui-react'
 
 const PostComponent = ({post}) => {
     return (

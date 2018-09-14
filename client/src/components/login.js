@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Grid, Form, Segment, Message } from 'semantic-ui-react';
 import { Mutation } from 'react-apollo';
-import loginMutation from '../GQL/mutation'
+import { loginMutation } from '../GQL/mutation';
 
 export default class Login extends React.Component {
 
@@ -18,12 +18,13 @@ export default class Login extends React.Component {
 
     handleSubmit = async ({event, Login}) => {
         event.preventDefault()
-        var { email, password } = this.state
-        await Login({variables: {email, password }})
+        Login().then(({data}) => {
+            localStorage.setItem('token', data.Login.token)
+        })
     }
 
     render() {
-        const {email, password, confirmPassword } = this.state
+        const {email, password } = this.state
         return (
             <Mutation mutation={loginMutation} variables={{email, password}}>
                 {(Login, {loading, error, data}) => {
@@ -32,9 +33,9 @@ export default class Login extends React.Component {
                         <Grid.Column style={{ maxWidth: 450 }}>
                             <Form size='large' onSubmit={(event => this.handleSubmit({event, Login}))}>
                                 <Segment >
-                                    <Form.Input fluid icon='name' name='email' value={email} iconPosition='left' placeholder='E-mail address' onChange={this.handleChange}/>
+                                    <Form.Input fluid icon='at' name='email' value={email} iconPosition='left' placeholder='E-mail address' onChange={this.handleChange}/>
                                     <Form.Input fluid icon='lock' name='password' value={password} iconPosition='left' placeholder='Password' type='password' onChange={this.handleChange}/>
-                                    <Form.Button fluid size='large' content='Submit'>
+                                    <Form.Button fluid size='large' >
                                         Login
                                     </Form.Button>
                                 </Segment>

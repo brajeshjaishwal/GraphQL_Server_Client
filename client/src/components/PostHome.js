@@ -1,8 +1,7 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag';
 import getAllPostsQuery from '../GQL/query';
-import { Loader, Dimmer, Segment } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 import PostComponent from './Post';
 
 export default class PostHome extends React.Component {

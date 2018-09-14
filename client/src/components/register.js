@@ -1,8 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Grid, Header, Form, Icon, Segment, Button, Message } from 'semantic-ui-react';
+import { Grid, Form, Segment, Message } from 'semantic-ui-react';
 import { Mutation } from 'react-apollo';
-import signUpMutation from '../GQL/mutation'
+import { signUpMutation } from '../GQL/mutation';
 
 export default class Register extends React.Component {
 
@@ -36,10 +36,10 @@ export default class Register extends React.Component {
                             <Form size='large' onSubmit={(event => this.handleSubmit({event, Register}))}>
                                 <Segment >
                                     <Form.Input fluid icon='user' name='name' value={name} iconPosition='left' placeholder='Full Name' onChange={this.handleChange}/>
-                                    <Form.Input fluid icon='name' name='email' value={email} iconPosition='left' placeholder='E-mail address' onChange={this.handleChange}/>
+                                    <Form.Input fluid icon='at' name='email' value={email} iconPosition='left' placeholder='E-mail address' onChange={this.handleChange}/>
                                     <Form.Input fluid icon='lock' name='password' value={password} iconPosition='left' placeholder='Password' type='password' onChange={this.handleChange}/>
                                     <Form.Input fluid icon='lock' name='confirmPassword' value={confirmPassword} iconPosition='left' placeholder='Confirm Password' type='password' onChange={this.handleChange}/>
-                                    <Form.Button fluid size='large' content='Submit'>
+                                    <Form.Button fluid size='large'>
                                         Register
                                     </Form.Button>
                                 </Segment>

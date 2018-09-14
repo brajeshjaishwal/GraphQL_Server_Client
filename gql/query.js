@@ -14,6 +14,12 @@ const rootQuery = new GraphQLObjectType({
             type: GraphQLString,
             resolve: () => "Welcome to gql v2"
         },
+        CurrentUser: {
+            type: UserType,
+            resolve: (_, {}, context) => {
+                return context.user
+            }
+        },
         Posts: {
             type: new GraphQLList(PostType),
             resolve: () => Post.find({})

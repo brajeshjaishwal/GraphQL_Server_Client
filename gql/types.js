@@ -17,7 +17,8 @@ const UserType = new GraphQLObjectType({
         name: { type: GraphQLString },
         email: { type: GraphQLString },
         password: { type: GraphQLString },
-        token: { type: GraphQLString }
+        token: { type: GraphQLString },
+        Role: { type: GraphQLString },
     }
 })
 const CommentType = new GraphQLObjectType({
