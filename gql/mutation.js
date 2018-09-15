@@ -67,12 +67,14 @@ const rootMutation = new GraphQLObjectType({
             type: PostType,
             args: {
                 title: { type: GraphQLString },
-                content: { type: GraphQLString }
+                description: { type: GraphQLString },
+                detail: { type: GraphQLString },
             },
             resolve: async function (_, {}, context, info) {
                 var post = Post({
                     title,
-                    content,
+                    description,
+                    detail,
                     author: context.user._id
                 })
                 post.save()

@@ -24,7 +24,7 @@ const rootQuery = new GraphQLObjectType({
             type: new GraphQLList(PostType),
             resolve: () => Post.find({})
         },
-        Post: {
+        MyPosts: {
             type: new GraphQLList(PostType),
             args: {
                 email: {type: GraphQLString}

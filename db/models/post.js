@@ -4,7 +4,9 @@ const Votes = require('./vote')
 
 const PostSchema = new Schema({
     title: String,
-    content: String,
+    description: String,
+    detail: String,//all details, diagrams, goes here
+    attachments: [String], //all kind of attachments
     author: Schema.Types.ObjectId,
     comments: [Schema.Types.ObjectId],
     likes: Number,

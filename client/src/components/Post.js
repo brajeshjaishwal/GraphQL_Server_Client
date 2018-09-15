@@ -11,7 +11,7 @@ const PostComponent = ({post}) => {
                     <Icon name='user'/>
                     {post.author.name}
                 </Card.Meta>
-                <Card.Description>{post.content}</Card.Description>
+                <Card.Description>{post.description}</Card.Description>
             </Card.Content>
             <Card.Content extra>
                 <Grid>
