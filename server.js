@@ -42,6 +42,6 @@ app.use('/gql', new gqlServer({
 ))
 
 app.listen('3300', () => {
-    process.env.SECRET = '6&^%_+P:{}878&*&^&*!@#~afsf'
+    process.env.SECRET = '6&^%_+P:{}878&*&^&*!@#~afsf' //this can be later moved to server environment variables
     console.log('server is running on 3300')
 })
