@@ -7,13 +7,11 @@ const {
     GraphQLBoolean,
  } = require('graphql')
 
-const jsonwebtoken = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
 const { User, Post, Comment } = require('../db')
 
 const { UserType, PostType, CommentType, TokenType } = require('./types')
-
-const jwtSecret = '!1`-0-=2346$#$^$#@!'
 
 const rootMutation = new GraphQLObjectType({
     name: "RootMutation",
@@ -45,7 +43,7 @@ const rootMutation = new GraphQLObjectType({
                     var user = await User.findUser({email, password })
                     if(user)
                     {
-                        user.token = await jsonwebtoken.sign({id: user._id}, jwtSecret)
+                        user.token = await jwt.sign({id: user._id}, 'abcd')
                         context.user = user
                         console.log(context)
                         return { token: user.token }

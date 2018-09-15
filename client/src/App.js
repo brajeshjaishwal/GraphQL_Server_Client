@@ -19,10 +19,19 @@ class App extends Component {
       <ApolloProvider client={new ApolloClient({
                                                   uri: "http://localhost:3300/gql",
                                                   fetchOptions: {
-                                                    headers: {
-                                                      "x-foobar": "12345678"
-                                                    }
-                                                }
+                                                    credentials: 'include'
+                                                  },
+                                                  request: (operation) => {
+                                                    var token = localStorage.getItem('token')
+                                                    operation.setContext({
+                                                      headers: {
+                                                        'auth': token
+                                                      }
+                                                    })
+                                                  },
+                                                  onError: ({networkError}) => {
+                                                    console.log(`Network error: ${networkError}`)
+                                                  } 
                                                 })}>
           <BrowserRouter>
             <Container >              
